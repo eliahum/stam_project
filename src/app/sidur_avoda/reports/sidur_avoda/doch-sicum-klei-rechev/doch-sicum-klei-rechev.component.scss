@@ -1,0 +1,14 @@
+.cont-flex {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  :host {
+    display: block;
+  }
+  .must {
+    color: red;
+    font-weight: bold;
+  }
+  

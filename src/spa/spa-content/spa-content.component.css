@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    flex-shrink: 1;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.body-style {
+    padding: 22px;
+    flex-grow: 1;
+}

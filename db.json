@@ -1,0 +1,271 @@
+{
+  "kodeyMesima": [
+    {
+      "kodMesima": 11101
+    },
+    {
+      "kodMesima": 21180
+    },
+    {
+      "kodMesima": 62110
+    }
+  ],
+  "test": [
+    {
+      "r": "t"
+    },
+    {
+      "r2": "t2"
+    }
+  ],
+  "sugeyMesima": {
+    "Data": [
+      {
+        "kod_sug": "80",
+        "teur_sug": "משולב//ערימות"
+      },
+      {
+        "kod_sug": "70",
+        "teur_sug": "הפוך לדחס"
+      },
+      {
+        "kod_sug": "41",
+        "teur_sug": "מחסנאי"
+      },
+      {
+        "kod_sug": "42",
+        "teur_sug": "ניקוי רחובות"
+      },
+      {
+        "kod_sug": "43",
+        "teur_sug": "בשצ"
+      },
+      {
+        "kod_sug": "21",
+        "teur_sug": "בובקט"
+      },
+      {
+        "kod_sug": "22",
+        "teur_sug": "טאוט מכני"
+      },
+      {
+        "kod_sug": "23",
+        "teur_sug": "טנדר מהפך"
+      },
+      {
+        "kod_sug": "24",
+        "teur_sug": "רכב סיור כולל נהג"
+      },
+      {
+        "kod_sug": "25",
+        "teur_sug": "רכב בנהיגה עצמית"
+      }
+    ],
+    "TotalPage": "10"
+  },
+  "tavlaotAvInsert": [
+    {
+      "id_premia_tavlat_av": "2",
+      "teur_premia": "תאור",
+      "premia": "3",
+      "zman_hatchala": "",
+      "zman_sof": "",
+      "simochin": "סימוכין22",
+      "heara": "\tהערה55",
+      "id": "2"
+    },
+    {
+      "id_premia_tavlat_av": "1",
+      "kod_mesima": "1111",
+      "teur_premia": "תאור תאור תאור",
+      "premia": "3",
+      "zman_hatchala": "",
+      "zman_sof": "",
+      "simochin": "32311",
+      "heara": "1231231231",
+      "id": "chNQ3NX"
+    },
+    {
+      "id_premia_tavlat_av": "-1",
+      "kod_mesima": "51812",
+      "teur_premia": "ffd",
+      "premia": "2",
+      "zman_hatchala": "",
+      "zman_sof": "",
+      "simochin": null,
+      "heara": null,
+      "id": "J2RWugD"
+    },
+    {
+      "id_premia_tavlat_av": "-1",
+      "kod_mesima": "11111",
+      "teur_premia": "1111",
+      "premia": "1",
+      "zman_hatchala": "",
+      "zman_sof": "",
+      "simochin": "1111",
+      "heara": "1111",
+      "id": "Q8hQqhq"
+    }
+  ],
+  "tavlaotAv": {
+    "Data": [
+      {
+        "id": "1",
+        "id_premia_tavlat_av": "1",
+        "table_id": 5,
+        "teur_premia": "teur_premia1",
+        "premia": "2",
+        "kamut": 15,
+        "kod_mesima": 11100,
+        "meshtamesh_medaveach": "11974",
+        "sw_pail": 1,
+        "sw_male": "1",
+        "zman_hatchala": "1900-01-01 00:00:00.000",
+        "zman_sof": "2079-06-06 00:00:00.000",
+        "simochin": "simochin1",
+        "heara": "heara1",
+        "teur_sug_mesima": "טאוט מכני",
+        "k_sug_mesima": "22"
+      },
+      {
+        "id": "2",
+        "id_premia_tavlat_av": "2",
+        "table_id": 5,
+        "teur_premia": "teur_premia2",
+        "premia": "2",
+        "kamut": 1,
+        "kod_mesima": 42919,
+        "meshtamesh_medaveach": "9922",
+        "sw_pail": 1,
+        "sw_male": "",
+        "zman_hatchala": "1900-01-01 00:00:00.000",
+        "zman_sof": "2079-06-06 00:00:00.000",
+        "simochin": "simochin1",
+        "heara": "heara1",
+        "k_sug_mesima": ""
+      }
+    ],
+    "TotalPage": 2
+  },
+  "sugeyPremiaTavlaatAv": [
+    {
+      "key": "5",
+      "value": "פרמיות יעודיות"
+    },
+    {
+      "key": "6",
+      "value": "פרמיות תפעול שוטף"
+    },
+    {
+      "key": "8",
+      "value": "פרמית הפוך לדחס"
+    },
+    {
+      "key": "9",
+      "value": "פרמית מיכלים"
+    },
+    {
+      "key": "10",
+      "value": "משולב לפי משקל לפועל"
+    },
+    {
+      "key": "11",
+      "value": "פרמיות ע\"פ סבבים"
+    },
+    {
+      "key": "12",
+      "value": "משולב לפי משקל לנהג"
+    },
+    {
+      "key": "13",
+      "value": "פרמיית טמוני קרקע"
+    },
+    {
+      "key": "14",
+      "value": "פרמיית מכולות"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "hefreshei_premia": {
+    "Data": [
+      {
+        "id_premia_hefreshim": 6,
+        "yechida": "הכרמל",
+        "kod_yechida": 21,
+        "k_user": 10989,
+        "full_name": "אליהו מלכין",
+        "achuz_premia": 3.68,
+        "teur_tzeva": "אדום",
+        "yami_divoach": 2,
+        "FromDate": "16/11/2014",
+        "ToDate": "18/11/2014",
+        "sw_pail": 1
+      },
+      {
+        "id_premia_hefreshim": 7,
+        "yechida": "הכרמל",
+        "kod_yechida": 21,
+        "k_user": 10989,
+        "full_name": "מדד יוסי",
+        "achuz_premia": 21.6,
+        "teur_tzeva": "אדום",
+        "yami_divoach": 2,
+        "FromDate": "16/11/2014",
+        "ToDate": "23/11/2014",
+        "sw_pail": 1
+      }
+    ],
+    "TotalPage": 2
+  },
+  "hefresh_premia":{
+    "id_premia_hefreshim":6,
+    "sw_pail":1,
+    "kod_yechida":21,
+    "id_yechida":151,
+    "k_user":10989,
+    "id_sug_makor_divuach_premia":1,
+    "kod_sug_makor_divuach_premia":1,
+    "teur_sug_makor_divuach_premia":"תכנון ובקרה",
+    "id_sug_divuach_premia":2,
+    "kod_sug_divuach_premia":2,
+    "teur_sug_divuach_premia":"הפרשים",
+    "id_zman":6556,
+    "yami_divoach":2,
+    "id_sug_mesima_mishni":79,
+    "id_sug_mesima":79,
+    "k_sug_mesima":38,
+    "teur_sug_mesima":"דחס 6-8 קוב",
+    "kod_mesima":1022,
+    "id_sug_headrut":3,
+    "achuz_premia":3.68,
+    "id_tzeva":1,
+    "heara":"רכב 6 קוב בהתאם למשקל",
+    "tr_asmacta": "2015-01-27 00:00:00.000",
+    "zman_hatchala":"2014-11-16 00:00:00.000",
+    "zman_sof": "2014-11-18 00:00:00.000",
+    "id_sug_divuach_asmachta":2,
+    "mispar_simochin":11,
+    "deleted":0,
+    "user_name":"c1397600",
+    "moed_idkun":"2015-07-22 15:35:25.583",
+    "yechida":"הכרמל",
+    "houvar_le_schar":null
+  }
+}

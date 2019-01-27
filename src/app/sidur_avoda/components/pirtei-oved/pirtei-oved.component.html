@@ -1,0 +1,29 @@
+<div class="card-deck" [style.color]="width">
+  <div *ngIf="IsCardVisible" class="card-header">
+    פרטי עובד
+  </div>
+  <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">שם משפחה</th>
+              <th scope="col">שם פרטי</th>
+              <th scope="col">מספר ת"ז</th>
+              <th scope="col">מספר עובד</th>
+              <th scope="col">מעמד</th>
+              <th scope="col">פעיל</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>{{Oved.shem_mishpacha}}</th>
+              <th>{{Oved.shem_prati}}</th>
+              <th>{{Oved.td_zehut_user}}</th>
+              <th>{{Oved.mispar_oved}}</th>
+              <th>{{Oved.teur_maamd}}</th>
+              <th>{{Oved.sw_payil_lo_payil==1?"כן":"לא"}}</th>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>

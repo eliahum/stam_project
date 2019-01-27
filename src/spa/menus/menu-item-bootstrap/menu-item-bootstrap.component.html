@@ -1,0 +1,13 @@
+<li *ngIf="!item.submenu" class="nav-item">
+    <span>{{item.text}}</span>
+</li>
+<li *ngIf="item.submenu" class="nav-item dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{item.text}}<b class="caret"></b></a>
+    <spa-popup-menu-bootstrap *ngIf="mouseInPopup || mouseInItem" 
+    [menu]='item.submenu' [style.left]='popupLeft+"px"'
+        [style.top]='popupTop+"px"' 
+        (mouseleave)='onPopupMouseLeave($event)' 
+        (mouseenter)='onPopupMouseEnter($event)'>
+
+    </spa-popup-menu-bootstrap>
+</li>

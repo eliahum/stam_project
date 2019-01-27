@@ -1,0 +1,53 @@
+
+export interface ITemplate {
+    id_sidur_avoda?: number;
+    id_mesima?: number;
+    yamim?: number;
+    teur_mesima?: string;
+    k_sug_mesima?: string;
+    kod_mesima?: string;
+    id_mesima_meshubetzet?: number;
+    teur_sug_mesima?: string;
+    id_peilot_lemesima?: number;
+    id_peilut_nidreshet?: number;
+    id_original_mesima_meshubetzet?: number;
+    id_peilot_meshubetzet?: number;
+    sw_pail?: number;
+    id_yechida?: number;
+    yechida?: string;
+    kod_yechida?: string;
+    id_sug_peilut?: number;
+    id_sug_mesima_rashi?: number;
+    teur_peilut?: string;
+    teur_peilut_doch?: string;
+    rechevBetikun?: number;
+    full_name?: string;
+    k_user?: number;
+    seder_peula?: string;
+    kamut?: number;
+    sw_male?: number;
+    sw_premia_letashlom?: number;
+    id_status_mesima?: number;
+    teur_status_mesima?: string;
+    heara?: string;
+    hearaHanion?: string;
+    hearaTahana?: string;
+    id_sug_mahot_mesima?: number;
+    peilut_sw_pail?: number;
+    yecholet_mahavr?: number;
+    id_rechev_nidrash?: number;
+    id_object?: number;
+    is_haavara_has_brothers_peilim?: number;
+    isSevav?: number;
+    mispar_pnimi?: string;
+    mispar_pnimi_old?: string;
+    mispar_rishui_netzer?: string;
+    mispar_rishui_original?: string;
+    sug_rechev_netzer?: number;
+    teur_sug_nefech_rehev?: string;
+    nefach_rehev?: number;
+    ms_yechidat_av?: number;
+    zman_sgirat_yom?: Date;
+    ms_yechida_mevatzat_av?: number;
+    
+}

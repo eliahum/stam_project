@@ -1,0 +1,57 @@
+<div class="cont-flex">
+    <span>מתאריך</span>
+    <kendo-datepicker [format]="'dd/MM/yyyy'" (valueChange)="dtMeChange($event)" [(ngModel)]="dtMeDate">
+        <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+            {{dtMeDate | date: 'dd/MM/yyyy'}}
+        </ng-template>
+    </kendo-datepicker>
+    <span>עד תאריך</span>
+    <kendo-datepicker [format]="'dd/MM/yyyy'" (valueChange)="dtAdChange($event)" [(ngModel)]="dtAdDate">
+        <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+            {{dtAdDate | date: 'dd/MM/yyyy'}}
+        </ng-template>
+    </kendo-datepicker>
+    <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="false" [withPermission]="onlySpecipicYechida"
+        [kodYechidaDefault]="KodYechidaMevazaat" title="יחידה קבועה" (onKodChanged)="OnYechidaKvuaChanged($event)"
+        (onCloseComp)="OnCloseYechidaKvua($event)"></yechida-comp-ng>
+    <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="false" [withPermission]="false" title="יחידה זמנית"
+        (onKodChanged)="OnYechidaZmanitChanged($event)" (onCloseComp)="OnCloseYechidaZmanit($event)"></yechida-comp-ng>
+    <span>עובד/נהג</span>
+    <kendo-autocomplete [data]="lstOvdim" textField="k_user" valueField="full_name" (valueChange)="OvedChange($event)"
+        [(ngModel)]="ovedText" [placeholder]="'בחר'" [filterable]="true" (filterChange)="autoCompFilter($event)">
+    </kendo-autocomplete>
+    <button type="button" (click)="OnHazeg()" class="btn btn-primary">הצג</button>
+</div>
+<form novalidate #myForm="ngForm">
+    <kendo-grid maakavNiudOvdimBinding [pageable]="true" [navigable]="true" [pageSize]="gridState.take" [skip]="gridState.skip"
+        [height]="410">
+        <kendo-grid-command-column title="יחידה קבועה" width="15">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.yechida}}</span>
+                <span>({{dataItem.kod_yechida}})</span>
+            </ng-template>
+        </kendo-grid-command-column>
+        <kendo-grid-command-column title="יחידה זמנית" width="15">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.yechida_zmanit_teur}}</span>
+                <span>({{dataItem.yechida_zmanit_id}})</span>
+            </ng-template>
+        </kendo-grid-command-column>
+        <kendo-grid-column field="td_zehut_user" title="ת.ז" width="15">
+        </kendo-grid-column>
+        <kendo-grid-column field="full_name" title="שם עובד" width="15">
+        </kendo-grid-column>
+        <kendo-grid-column field="t_tafkid" title="תפקיד" width="15">
+        </kendo-grid-column>
+        <kendo-grid-column field="zman_hatchala" title="מתאריך" width="15">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{transformDate(dataItem.zman_hatchala)}}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="zman_sof" title="עד תאריך" width="15">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.zman_sof | date: 'dd/MM/yyyy'}}</span>
+            </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>
+</form>

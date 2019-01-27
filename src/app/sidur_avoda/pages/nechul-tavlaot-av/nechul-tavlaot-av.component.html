@@ -1,0 +1,219 @@
+<div class="cont-flex">
+    <span>טבלה</span>
+    <kendo-dropdownlist (valueChange)="OnHazeg()" name="cmbTable" [data]="tableList" [textField]="'value'" [valueField]="'key'"
+        [(ngModel)]="tableId"></kendo-dropdownlist>
+    <span>מתאריך</span>
+    <kendo-datepicker novalidate [format]="'dd/MM/yyyy'" (blur)="onBlurMeDate()" [(ngModel)]="dtMeDate">
+        <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+            {{dtMeDate | date: 'dd/MM/yyyy'}}
+        </ng-template>
+    </kendo-datepicker>
+    <span>עד תאריך</span>
+    <kendo-datepicker [format]="'dd/MM/yyyy'" (valueChange)="dtAdChange($event)" [(ngModel)]="dtAdDate">
+        <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+            {{dtAdDate | date: 'dd/MM/yyyy'}}
+        </ng-template>
+    </kendo-datepicker>
+    <span>פעיל</span>
+    <kendo-dropdownlist style="width: 60px;" name="cmbPail" [data]="kenLoList" [textField]="'text'" [valueField]="'value'" [(ngModel)]="swPail"></kendo-dropdownlist>
+    <button type="button" (click)="OnHazeg()" class="btn btn-primary">הצג</button>
+</div>
+<form novalidate [formGroup]="tablaotAvForm">
+    <kendo-grid tavlaotAvBinding (edit)="editHandler($event)" (cancel)="cancelHandler($event)" (remove)="removeHandler($event)"
+        (add)="addHandler($event)" (save)="saveHandler($event)" [pageable]="true" [navigable]="true" [pageSize]="gridState.take"
+        [skip]="gridState.skip" [height]="410"
+        [sortable]="{
+            allowUnsort: allowUnsort,
+            mode: 'single'
+            }"
+          [sort]="sort"
+        >
+        <ng-template kendoGridToolbarTemplate>
+            <button kendoGridAddCommand [primary]="true">הוסף</button>
+        </ng-template>      
+        <kendo-grid-column  *ngIf="checkIfColumnVisibile('kamut')" field="kamut" title="כמות מיכליות" width="12">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}<span class="must">*</span>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.kamut}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-formGroup="tablaotAvForm" let-isNew="isNew" >
+                <div class="cont-flex">
+                    <input (blur)="onValueChanged()" formControlName="kamut" style="width:50px;" />
+                    <span *ngIf="tablaotAvForm.controls.kamut.invalid" class="must">*</span>
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column *ngIf="checkIfColumnVisibile('sw_male')" field="sw_male" title="מלא" width="6">
+                <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                    {{column.title}}
+                </ng-template>
+                <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                    <span><input  [disabled]="true" type="checkbox" id="swMale" [checked]="dataItem.sw_male"></span>
+                </ng-template>
+                <ng-template kendoGridEditTemplate let-isNew="isNew" let-dataItem="dataItem" let-formGroup="tablaotAvForm">
+                    <div class="cont-flex">
+                        <span><input type="checkbox" id="swMale" [checked]="dataItem.sw_male"></span>
+                    </div>
+                </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column *ngIf="checkIfColumnVisibile('k_sug_mesima')" field="k_sug_mesima" title="סוג משימה" width="36">
+            <ng-template kendoGridHeaderTemplate let-column>
+                {{column.title}}<span class="must">*</span>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.teur_sug_mesima}} ({{dataItem.k_sug_mesima}})</span>
+            </ng-template>
+            <ng-template let-isNew="isNew" let-dataItem="dataItem" kendoGridEditTemplate let-formGroup="tablaotAvForm">
+                <div class="cont-flex" *ngIf="isNew">
+                    <sug-mesima-ng [pageSize]="10" (onKodChanged)="OnSugMesimaChanged($event)" (onCloseComp)="OnCloseSugMesima($event)"
+                        title="סוג משימה"></sug-mesima-ng>
+                    <span *ngIf="tablaotAvForm.controls.kod_sug_mesima.invalid" class="must">*</span>
+                </div>
+                <div class="cont-flex" *ngIf="!isNew"><span>{{dataItem.teur_sug_mesima}} ({{dataItem.k_sug_mesima}})</span></div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column *ngIf="checkIfColumnVisibile('kod_mesima')" field="kod_mesima" title="אזור" width="12">
+            <ng-template kendoGridHeaderTemplate let-column>
+                {{column.title}}<span class="must">*</span>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.kod_mesima}}</span>
+            </ng-template>
+            <ng-template let-isNew="isNew" kendoGridEditTemplate let-formGroup="tablaotAvForm">
+                <div class="cont-flex">
+                    <input (blur)="onValueChanged()" maxlength="5" value="3" [OnlyNumber]="true" type="textbox" formControlName="kod_mesima" style="width:60px;" />
+                    <span *ngIf="tablaotAvForm.controls.kod_mesima.touched && tablaotAvForm.controls.kod_mesima.invalid" class="must">*</span>
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="teur_premia" title="תאור" width="20">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}<span class="must">*</span>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.teur_premia}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-formGroup="tablaotAvForm">
+                <div class="cont-flex">
+                    <textarea (blur)="onValueChanged()" maxlength="20" rows="3" formControlName="teur_premia" style="width:160px;"></textarea> 
+                    <span *ngIf="tablaotAvForm.controls.teur_premia.touched && tablaotAvForm.controls.teur_premia.invalid"
+                        class="must">*</span>
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="premia" title="פרמייה יומית %" width="14">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}<span class="must">*</span>
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.premia | number:'1.2'}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-formGroup="tablaotAvForm">
+                <div class="cont-flex">
+                    <input  (blur)="onValueChanged()" maxlength="2"  type="textbox" [OnlyNumber]="true" formControlName="premia" style="width:100px;" />
+                    <span *ngIf="tablaotAvForm.controls.premia.touched && tablaotAvForm.controls.premia.invalid" class="must">*</span>
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="premia" title="פרמיה ל- 25 יום" width="12">
+            <ng-template kendoGridHeaderTemplate>
+                פרמיה ל- 25 יום
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.premia * 25 | number:'1.2'}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-isNew="isNew" let-dataItem="dataItem" let-column="column"
+                let-formGroup="tablaotAvForm">
+                <span *ngIf="isNew"></span>
+                <span *ngIf="!isNew">{{dataItem.premia * 25 | number:'1.2'}}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="zman_hatchala" title="מתאריך" width="12">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.zman_hatchala | date: 'dd/MM/yyyy'}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-isNew="isNew" let-dataItem="dataItem" let-formGroup="tablaotAvForm">
+                <span>{{dataItem.zman_hatchala | date: 'dd/MM/yyyy'}}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="zman_sof" title="עדכון אחרון" width="12">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.zman_sof | date: 'dd/MM/yyyy'}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-isNew="isNew" let-dataItem="dataItem" let-formGroup="tablaotAvForm">
+                <span>{{dataItem.zman_sof | date: 'dd/MM/yyyy'}}</span>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="full_name" title="גורם מדווח" width="10">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                {{dataItem.full_name}}
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-isNew="isNew" let-dataItem="dataItem">
+                {{dataItem.full_name}}
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="sw_pail" title="פעיל" width="6">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span><input [disabled]="true" type="checkbox" id="swPail" [checked]="dataItem.sw_pail"></span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-isNew="isNew" let-dataItem="dataItem" let-formGroup="tablaotAvForm">
+                <div class="cont-flex">
+                    <span><input [disabled]="true" type="checkbox" id="swPail" [checked]="true"></span>
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="simochin" title="סימוכין" width="15">
+            <ng-template kendoGridHeaderTemplate let-column>
+                {{column.title}}
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.simochin}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-formGroup="tablaotAvForm">
+                <div class="cont-flex">
+                    <input  maxlength="100" type="textbox" formControlName="simochin" style="width:120px;" />
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="heara" [sortable]="false" title="הערה" width="20">
+            <ng-template kendoGridHeaderTemplate let-column let-columnIndex="columnIndex">
+                {{column.title}}
+            </ng-template>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <span>{{dataItem.heara}}</span>
+            </ng-template>
+            <ng-template kendoGridEditTemplate let-formGroup="tablaotAvForm">
+                <div class="cont-flex">
+                    <textarea maxlength="100" rows="3" formControlName="heara" style="width:160px;" ></textarea>
+                </div>
+            </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-command-column title="" width="16">
+            <ng-template kendoGridCellTemplate let-isNew="isNew">
+                <button kendoGridEditCommand [primary]="true">עדכן</button>
+                <button kendoGridRemoveCommand type="button">הסר</button>
+                <button kendoGridSaveCommand type="button" [disabled]="(
+                tablaotAvForm.controls.premia.invalid 
+                || tablaotAvForm.controls.teur_premia.invalid 
+                || tablaotAvForm.controls.kod_mesima.invalid )">{{'שמור'}}</button>
+                <button kendoGridCancelCommand type="button">{{'בטל'}}</button>
+            </ng-template>
+        </kendo-grid-command-column>
+    </kendo-grid>
+    <!-- <oved-ng (onCloseComp)="OnCloseTablaotAv($event)"></oved-ng> -->
+
+</form>

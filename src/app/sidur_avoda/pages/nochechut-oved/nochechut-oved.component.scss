@@ -1,0 +1,43 @@
+:host{
+    margin-top: 0px;
+    display:block;
+// display:inline-block;
+}
+.k-grid {
+    width:1200px;
+}
+table tr td{
+    padding:0px;
+ }
+ table tr {
+  padding:0px;
+  line-height: 8px;
+}
+.rowclass {
+    line-height: 8px;
+    padding:0px;
+    font-size: 10px;
+}
+tr.ui-state-highlight {
+    background-color: greenyellow;
+    color: #ffffff;
+}
+.myrelative{
+    position: absolute;
+    margin:0px;
+    top:300px;
+    left: 30px;
+    border: 3px solid #73AD21;
+}
+.whole-cell {
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    
+  }
+  .cont-flex {
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+  }    

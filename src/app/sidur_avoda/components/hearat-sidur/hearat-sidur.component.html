@@ -1,0 +1,10 @@
+<p-dialog [(visible)]="display" modal="modal" [contentStyle]="{'width':'550px','height':'130px'}" [responsive]="true">
+  <p-header style="margin-left:45%">הערת סידור</p-header>
+  <textarea rows="4" style="width:100%;" (change)="doTextareaValueChange($event)">{{HearatSidur}}</textarea>
+  <p-footer>
+    <span class="cont-flex">
+      <button type="button" pButton icon="pi pi-check" (click)="OnDialogYesClick()" label="שמור"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="OnDialogNoClick()" label="בטל" class="ui-button-secondary"></button>
+    </span>
+  </p-footer>
+</p-dialog>

@@ -1,0 +1,8 @@
+.cont-flex {
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+  }
+  :host{
+    display:block;
+  }

@@ -1,0 +1,19 @@
+<kendo-dropdownlist [data]="listItems" name="lstItems" 
+[popupSettings]="{
+  width: 30,
+  height: 150
+}" style="width: 160px;"
+[disabled]="disabledStatus"
+[readonly]="IsReadOnly"
+[style.display]="display"
+ textField="text" valueField="value" [(ngModel)]="selectedItem"
+(ngModelChange)="onChange($event)" 
+>
+ <ng-template kendoDropDownListItemTemplate let-dataItem>
+  <span class="fontclass">
+      {{ dataItem.text }}
+  </span>  
+</ng-template>
+</kendo-dropdownlist>
+<span style="color:blue;font-weight: bold" 
+ *ngIf="SugMahutId==2 && CurrentPeilut.id_status_mesima==6">{{CurrentPeilut.teur_status_mesima}}</span>

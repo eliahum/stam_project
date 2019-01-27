@@ -1,0 +1,62 @@
+<p-dialog [(visible)]="display" modal="modal" [responsive]="true">
+  <p-header>מידע נוסף</p-header>
+
+  <div class="container" style="direction: rtl;">
+    <p *ngIf="HasOvedTitle" class="text-center">
+      <span class="badge badge-secondary">{{info}}</span>
+    </p>
+    <div *ngIf="IsHeadrut" class="row">
+      <div class="form-group">
+        <span>מתאריך:</span>
+        <kendo-datepicker [format]="'dd/MM/yyyy'" name="dtHeadrutMe" (blur)="DtChange($event,'me')" [(ngModel)]="midaNosafData.dtHeadrutMe">
+          <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+          </ng-template>
+        </kendo-datepicker>
+      </div>
+      <div class="form-group">
+        <span>עד:</span>
+        <kendo-datepicker [format]="'dd/MM/yyyy'" name="dtHeadrutAd" (blur)="DtChange($event,'ad')" [(ngModel)]="midaNosafData.dtHeadrutAd">
+          <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+          </ng-template>
+        </kendo-datepicker>
+
+      </div>
+      <div class="form-group">
+        <span>העדרות:</span>
+        <kendo-dropdownlist [data]="listItems" name="lstItems" (ngModelChange)="onChange($event)" textField="text"
+          valueField="value" [(ngModel)]="selectedItem">
+          <ng-template kendoDropDownListItemTemplate let-dataItem>
+            {{ dataItem.text }}
+          </ng-template>
+        </kendo-dropdownlist>
+      </div>
+    </div>
+    <p></p>
+    <div class="row">
+      <span>{{lblHeara}}</span>
+      <textarea name="heara" [(ngModel)]="midaNosafData.Heara" class="col-md-8" style="padding:0px" rows="2"></textarea>
+    </div>
+    <p></p>
+    <div class="row">
+      <div class="form-group">
+        <span>{{lblKamut}}</span>
+        <input type="text" OnlyNumber="true" name="kamut" [(ngModel)]="midaNosafData.Kamut" style="width:35px">
+      </div>
+
+      <div *ngIf="IsPremia" class="form-group">
+        <span>פרמיה</span>
+        <input type="checkbox" disabled="disabled" name="haspremia" [(ngModel)]="midaNosafData.HasPremia" />
+      </div>
+      <div *ngIf="IsMale" class="form-group">
+        <span>מלא</span>
+        <input type="checkbox" disabled="disabled" [(ngModel)]="midaNosafData.IsMale" aria-label="Small" name="haspremia" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <span class="cont-flex">
+      <button type="button" pButton icon="pi pi-check" *ngIf="!IsReadOnly" (click)="onSaveClick()" label="כן"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="display=false" label="לא"></button>
+    </span>
+  </p-footer>
+</p-dialog>

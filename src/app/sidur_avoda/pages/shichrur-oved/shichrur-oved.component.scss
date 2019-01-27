@@ -1,0 +1,16 @@
+.cont-flex {
+  display: flex;
+  justify-content: right;
+  flex-direction: row;
+}
+
+.must {
+  color: red;
+}
+:host{
+  display:block;
+}
+.fakeDisable {
+  pointer-events:none;
+  color: #cccccc;
+}

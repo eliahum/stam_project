@@ -1,0 +1,44 @@
+<div class="cont-flex">
+
+  <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="false" [withPermission]="onlySpecipicYechida" [kodYechidaDefault]="KodYechidaMevazaat"
+    (onKodChanged)="OnYechidaMevazaatChanged($event)" (onCloseComp)="OnCloseYechidaMevazaat($event)" title="יחידה"></yechida-comp-ng>
+
+  <button type="button" (click)="OnHazeg()" class="btn btn-primary">הצג</button>
+</div>
+
+<kendo-grid hefreshimBinding [pageable]="true" [navigable]="true" [pageSize]="gridState.take" [skip]="gridState.skip"
+  [height]="410">
+  <kendo-grid-command-column title="" width="5">
+    <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem="dataItem">
+        <button style="font-size: 8px;margin:0px;padding:0px;display:inline"
+         (click)="OpenHefreshPremia(dataItem)" class="btn"
+          pButton type="button" icon="pi pi-calendar-plus" title="עדכון הפרשי פרמיות">
+        </button>
+        <!-- <button kendoGridEditCommand [primary]="true" *ngIf="false">עדכון</button>
+        <button kendoGridSaveCommand [disabled]="formGroup?.invalid" *ngIf="false">{{ isNew ? 'Add' : 'שמור' }}</button> -->
+    </ng-template>
+  </kendo-grid-command-column>
+  <kendo-grid-command-column title="יחידה" width="15">
+    <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+      <span>{{dataItem.yechida}}</span>
+      <span>({{dataItem.kod_yechida}})</span>
+    </ng-template>
+  </kendo-grid-command-column>
+  <kendo-grid-column field="full_name" title="עובד" width="40"></kendo-grid-column>
+  <kendo-grid-column field="achuz_premia" title="% פרמיה" width="40"></kendo-grid-column>
+  <kendo-grid-column field="teur_tzeva" title="צבע" width="40"></kendo-grid-column>
+  <kendo-grid-column field="yami_divoach" title="ימי דיווח" width="40"></kendo-grid-column>
+  <kendo-grid-column field="" title="סך הכל אחוז פרמיה" width="40">
+    <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+      <span>{{dataItem.yami_divoach*dataItem.achuz_premia | number}}</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="FromDate" title="מתאריך" width="40"></kendo-grid-column>
+  <kendo-grid-column field="ToDate" title="עד תאריך" width="40"></kendo-grid-column>
+  <kendo-grid-command-column title="פעיל" width="15">
+    <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+      <span><input [disabled]="true" type="checkbox" id="swPail" [checked]="dataItem.sw_pail"></span>
+    </ng-template>
+  </kendo-grid-command-column>
+
+</kendo-grid>

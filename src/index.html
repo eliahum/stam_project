@@ -1,0 +1,238 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TavruaWeb</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="IE=edge">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  
+</head>
+<body>
+  <app-root>
+   <style type="text/css">
+      /*#pre-bootstrap {
+          background-color: #262626;
+          bottom: 0px;
+          left: 0px;
+          position: fixed;
+          right: 0px;
+          top: 0px;
+          z-index: 999999;
+      }
+
+      #pre-bootstrap div.messaging {
+          color: #FFFFFF;
+          font-family: monospace;
+          left: 0px;
+          margin-top: -37px;
+          position: absolute;
+          right: 0px;
+          direction: rtl;
+          text-align: center;
+          top: 50%;
+      }
+
+      #pre-bootstrap h1 {
+          font-size: 26px;
+          line-height: 35px;
+          margin: 0px 0px 20px 0px;
+      }
+
+      #pre-bootstrap p {
+          font-size: 18px;
+          line-height: 14px;
+          margin: 0px 0px 0px 0px;
+      }*/
+      #container {
+    position: absolute;
+    top: 100px;
+    left: 45%;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background: #272727;
+  }
+  .circle1 {
+    position: relative;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+  
+    border-right: 60px solid transparent;
+    border-top: 60px solid #1ba7f2;
+    border-left: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    -moz-transform:rotate(320deg);
+    -webkit-transform:rotate(320deg);
+    -o-transform:rotate(320deg);
+    -ms-transform:rotate(320deg);
+    animation: spin1 0.1s infinite linear;
+    -webkit-animation: spin1 0.2s infinite linear;
+    
+  }
+  
+  
+  
+  .circle2 {
+    position: relative;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    left: 49%;
+    border-right: 60px solid transparent;
+    border-top: 60px solid #1ba7f2;
+    border-left: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    -moz-transform:rotate(320deg);
+    -webkit-transform:rotate(320deg);
+    -o-transform:rotate(320deg);
+    -ms-transform:rotate(320deg);
+    animation: spin1 0.1s infinite linear;
+    -webkit-animation: spin1 0.2s infinite linear;
+    
+  }
+  
+  
+  .circle3 {
+    position: absolute;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    border-right: 60px solid transparent;
+    border-top: 60px solid #1ba7f2;
+    border-left: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    -moz-transform:rotate(200deg);
+    -webkit-transform:rotate(200deg);
+    -o-transform:rotate(200deg);
+    -ms-transform:rotate(200deg);
+    animation: spin3 0.5s infinite linear;
+    -webkit-animation: spin3 0.5s infinite linear;
+  }
+  /* animations */
+  
+  @keyframes spin1 {
+    0% {
+    -moz-transform:rotate(320deg);
+    -webkit-transform:rotate(320deg);
+    -o-transform:rotate(320deg);
+    -ms-transform:rotate(320deg);
+    }
+    100% {
+    -moz-transform:rotate(680deg);
+    -webkit-transform:rotate(680deg);
+    -o-transform:rotate(680deg);
+    -ms-transform:rotate(680deg); 
+    }
+  }
+  @-webkit-keyframes spin1 {
+    0% {
+    -moz-transform:rotate(320deg);
+    -webkit-transform:rotate(320deg);
+    -o-transform:rotate(320deg);
+    -ms-transform:rotate(320deg);
+    }
+    100% {
+    -moz-transform:rotate(680deg);
+    -webkit-transform:rotate(680deg);
+    -o-transform:rotate(680deg);
+    -ms-transform:rotate(680deg); 
+    }
+  }
+  @keyframes spin2 {
+    0% {
+    -moz-transform:rotate(80deg);
+    -webkit-transform:rotate(80deg);
+    -o-transform:rotate(80deg);
+    -ms-transform:rotate(80deg);
+    }
+    100% {
+    -moz-transform:rotate(440deg);
+    -webkit-transform:rotate(440deg);
+    -o-transform:rotate(440deg);
+    -ms-transform:rotate(440deg); 
+    }
+  }
+  @-webkit-keyframes spin2 {
+    0% {
+    -moz-transform:rotate(80deg);
+    -webkit-transform:rotate(80deg);
+    -o-transform:rotate(80deg);
+    -ms-transform:rotate(80deg);
+    }
+    100% {
+    -moz-transform:rotate(440deg);
+    -webkit-transform:rotate(440deg);
+    -o-transform:rotate(440deg);
+    -ms-transform:rotate(440deg); 
+    }
+  }
+  @keyframes spin3 {
+    0% {
+    -moz-transform:rotate(200deg);
+    -webkit-transform:rotate(200deg);
+    -o-transform:rotate(200deg);
+    -ms-transform:rotate(200deg);
+    }
+    100% {
+    -moz-transform:rotate(560deg);
+    -webkit-transform:rotate(560deg);
+    -o-transform:rotate(560deg);
+    -ms-transform:rotate(560deg); 
+    }
+  }
+  @-webkit-keyframes spin3 {
+    0% {
+    -moz-transform:rotate(200deg);
+    -webkit-transform:rotate(200deg);
+    -o-transform:rotate(200deg);
+    -ms-transform:rotate(200deg);
+    }
+    100% {
+    -moz-transform:rotate(560deg);
+    -webkit-transform:rotate(560deg);
+    -o-transform:rotate(560deg);
+    -ms-transform:rotate(560deg); 
+    }
+  }
+
+</style>
+
+<!--<div id="pre-bootstrap">
+  <div class="messaging">
+      <h1>
+          טעינת מערכת ...
+      </h1>
+
+      <p>
+          
+      </p>
+
+    </div>
+ </div> 
+-->
+<div id="container">
+  
+ 
+  
+    <div class="circle1">
+    </div>
+    <h1>
+        טעינת מערכת
+    </h1> 
+  </div>
+  
+  </app-root>
+</body>
+</html>

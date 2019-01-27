@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+      <span>{{title}}</span>
+    <input type="button" (click)="ClickYechida($event)">
+    <input type="textbox" OnlyNumber="true" (blur)="onYechidaBlur($event)" style="width:30px" [(ngModel)]="kod_yechida" />
+    <input type="textbox" [ngStyle]="{ 'width.px': widthTeur }"  [(ngModel)]="yechida_name" readonly="readonly" />
+  </div>
+</div>
+<ng-template #contentYechidaNg let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <span class="text-right">יחידות</span>
+  </div>
+  <div class="modal-body">
+      <p-table #dt [columns]="cols" [value]="lstYechidot" [lazy]="true"
+       dataKey="kod_yechida" selectionMode="single" [(selection)]="selectedYechida"
+          (onRowSelect)="onRowSelect($event)" [loading]="loading"  
+          [totalRecords]="totalRecords" (onLazyLoad)="loadYechidotLazy($event)"
+          [paginator]="true" [rows]="9">
+
+          <ng-template pTemplate="header" let-columns>
+              <tr>
+                  <th style="width:25px"></th>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                      {{col.header}}                        
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+              </tr>
+              <tr>
+                  <th></th>
+                  <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input *ngSwitchCase="'kod_yechida'" size="5" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'yechida'" size="5" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'yechidat_av_code'" pInputText size="5" type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'yechidat_av_teur'" size="5" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                  </th>
+              </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-yechida>
+              <tr  [ngClass]="'yechida'" (click)="onRowSelect(yechida)"  >
+                <td class="text-right"></td>
+                <td class="text-right">{{yechida.kod_yechida}}</td>
+                  <td class="text-right">{{yechida.yechida}}</td>
+                  <td class="text-right">{{yechida.yechidat_av_code}}</td>
+                  <td class="text-right">{{yechida.yechidat_av_teur}}</td>
+              </tr>
+          </ng-template>
+      </p-table>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('empty')">Close</button>
+  </div>
+
+</ng-template>

@@ -1,0 +1,35 @@
+<span class="header" style="text-align: center">
+
+  <h4 class="title">דו"ח 2.8 חודשי לעובד</h4>
+  <div class="cont-flex">
+
+    <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="true" [withPermission]="onlySpecipicYechida" [kodYechidaDefault]="KodYechidaMevazaat"
+      (onKodChanged)="OnYechidaMevazaatChanged($event)" (onCloseComp)="OnCloseYechidaMevazaat($event)" title="יחידה"></yechida-comp-ng>
+    <form novalidate [formGroup]="dochForm" (ngSubmit)="OnHazeg()">
+      <span>כולל לא פעילים:</span>
+      <input type="checkbox" name="chkOvedNehag" (change)="OnCheckOvedNehag($event)"
+       formControlName="chkOvedNehag">
+      <span>עובד/נהג:</span>
+      <kendo-combobox name="ovdim" [data]="ovdim" [textField]="'full_name'" [valueField]="'k_user'" formControlName="oved">
+      </kendo-combobox>
+      
+      <span>תאריך</span>
+      <kendo-datepicker [format]="'dd/MM/yyyy'" formControlName="dtDate">
+      </kendo-datepicker>
+      <span *ngIf="dochForm.controls.dtDate.invalid" class="must">תאריך שדה חובה</span>
+
+      <span>חודש:</span>
+      <kendo-combobox name="months" [data]="months" [textField]="'text'" [valueField]="'value'" formControlName="month">
+      </kendo-combobox>
+      <span>שנה:</span>
+      <kendo-combobox name="years" [data]="years" [textField]="'text'" [valueField]="'value'" formControlName="year">
+      </kendo-combobox>
+     
+
+      <button type="submit" style="margin-right: 20px;" class="btn btn-primary">הצג</button>
+
+    </form>
+  </div>
+
+</span>
+<iframe width="100%" height="450" frameborder="0" [src]="url"></iframe>

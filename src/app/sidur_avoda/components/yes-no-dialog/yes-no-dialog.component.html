@@ -1,0 +1,11 @@
+<div class="ui-rtl" dir="rtl" >
+    <div style="direction: rtl;text-align: center;" [innerHTML]='dialogConfig.data.question'></div>
+    <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix" style="text-align: center;">
+        <button type="button" pButton icon="pi pi-times" (click)="onNoClick()" label="לא"></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" pButton icon="pi pi-check" (click)="onYesClick()" label="כן"></button>
+      </div>
+    </p-footer>
+  </div>
+    

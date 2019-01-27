@@ -1,0 +1,68 @@
+
+table tr td{
+    padding:0px;
+
+ }
+ table tr {
+  padding:0px;
+  line-height: 5px;
+}
+.rowclass {
+    line-height: 5px;
+    padding:0px;
+    font-size: 15px;
+}
+.fontclass{
+    font-size: 18px;
+}
+:host ::ng-deep button {
+    margin-right: .25em;
+        display:block;
+
+}
+.mesimaClass{
+    color : #215182;
+    font-size:18px;
+    font-weight:bold;
+    text-decoration : none;
+}
+
+:host ::ng-deep .error-toast .ui-toast-message1 {
+    color: #ffffff;
+    background: #FC466B;
+    background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+    background: linear-gradient(to right, #3F5EFB, #FC466B);
+}
+:host ::ng-deep .success-toast .ui-toast-message1 {
+    color: blue;
+    background: lightgreen;
+    background: -webkit-linear-gradient(to right, lightcyan, lightgreen);
+    background: linear-gradient(to right, lightcyan, lightgreen);
+}
+
+
+:host ::ng-deep .custom-toast .ui-toast-close-icon1 {
+    color:blue;
+}
+/*
+.ui-state-highlight{
+    background-color: salmon !important;
+}
+*/
+.TlvImageButtonSmallMoreInfo
+{
+background-position:center;
+width: 16px;
+height: 16px;
+border: none;
+background-color: White;
+cursor: hand;
+border: none;
+float: right;
+}
+.cont-flex{
+display: flex;
+justify-content: right;
+flex-direction: row;
+
+}

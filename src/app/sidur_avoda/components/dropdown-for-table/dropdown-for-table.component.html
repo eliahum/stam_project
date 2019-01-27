@@ -1,0 +1,10 @@
+<kendo-dropdownlist [data]="listItems" name="lstItems" 
+   [textField]="'text'" [valueField]="'value'"
+   [(ngModel)]="selectedItem"
+   (ngModelChange)="onChange($event)" 
+ >
+
+ <ng-template kendoDropDownListItemTemplate let-dataItem>
+  {{ dataItem.text }}
+ </ng-template>
+</kendo-dropdownlist>

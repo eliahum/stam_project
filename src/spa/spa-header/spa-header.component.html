@@ -1,0 +1,20 @@
+<div *screenLarge class='title-bar'>
+    <div class="menu-area">
+        
+        <spa-menu *ngIf="!menuService.isVertical"></spa-menu>
+
+        <!-- <spa-menu-bootstrap></spa-menu-bootstrap> -->
+    </div>
+    <icon-bar></icon-bar>
+    <img src="assets/images/LogoTavroa.gif" alt="Car fest logo">
+
+</div>
+<div *screenSmall class='title-bar-small'>
+    <div class="small-icon-holder">
+        <a><img src="assets/images/menu.png" (click)='menuService.toggleMenu()'></a>
+    </div>
+    <div class="small-image-holder">
+        <img src="assets/images/logo.png" alt="Car fest logo" class="small-image">
+    </div>
+</div>
+

@@ -1,0 +1,51 @@
+.cont-flex {
+  display: flex;
+  justify-content: right;
+  flex-direction: row;
+}
+:host {
+  display: block;
+}
+.must {
+  color: red;
+  font-weight: bold;
+}
+.grid-container {
+  display: grid;
+  direction: rtl;
+}
+
+.wrapper {
+  display: grid;
+  direction: rtl;
+  grid-template-rows: 30px 50px;
+  width: 800px;
+}
+.one {
+  grid-column: 1;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2;
+  grid-row: 1;
+}
+.three {
+  grid-column: 3;
+  grid-row: 1;
+}
+.four {
+  grid-column: 1;
+  grid-row: 2;
+}
+.five {
+  grid-column: 2;
+  grid-row: 2;
+}
+.six {
+  grid-column: 3;
+  grid-row: 2;
+}
+.seven {
+  grid-column: 4;
+  grid-row: 2;
+}

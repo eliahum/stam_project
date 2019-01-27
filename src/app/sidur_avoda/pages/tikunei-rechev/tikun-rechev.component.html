@@ -1,0 +1,147 @@
+<div dir="rtl" style="text-align: right;height: 530px;">
+  <form novalidate [formGroup]="tikunForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card" style="height: 12rem;">
+            <div class="card-header bg-primary text-white">כללי</div>
+            <div class="card-body">
+              <div class="form-group row">
+                <div class="col-4">
+                  <label for="mispar_pnimi">רכב</label>
+                  <span class="cont-flex">
+                    <span class="must" *ngIf="mustRechev">*</span>
+                    <input type="button" class="btn" value="..." (click)="ClickRechev()">
+                    <input class="form-control" style="width:60px" OnlyNumber="true"
+                    id="mispar_pnimi" formControlName="mispar_pnimi" (change)="ChangeMisparPnimi(tikunForm.get('mispar_pnimi').value)"  />
+                    <input class="form-control bg-white" style="width:160px" OnlyNumber="true" readonly formControlName="mispar_rishui_netzer" />
+                  </span>
+                </div>
+
+                <div class="col-8">
+                  <label for="heara">הערות</label>
+                  <textarea class="form-control" id="heara" formControlName="heara" rows="3">
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="card" style="height: 18rem;">
+            <div class="card-header bg-primary text-white">העברה לתיקון</div>
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="nahag_full_name">גורם מטפל</label>
+                  </div>
+                  <div class="col-sm">
+                    <kendo-dropdownlist [data]="listItems" 
+                    name="lstItems" 
+                    [popupSettings]="{
+                                      width: 30,
+                                      height: 150
+                                     }"
+                      [valuePrimitive]="true" style="width: 160px;"
+                       formControlName="goremId"
+                      textField="teur_gorem_metaken" valueField="id_gorem_metaken">
+                      <ng-template kendoDropDownListItemTemplate let-dataItem>
+                        <span class="fontclass">
+                          {{ dataItem.teur_gorem_metaken }}
+                        </span>
+                      </ng-template>
+                    </kendo-dropdownlist>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm">
+                    <label for="zman_hatchala">ת.העברה</label>
+                  </div>
+                  <div class="col-sm">
+                    <input class="form-control  bg-white" readonly id="zman_hatchala" formControlName="zman_hatchala" />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm">
+                      
+                    <label for="nahag_full_name">נהג</label>
+                  </div>
+                  <div class="col-sm">
+                    <span class="cont-flex">
+                        <span class="must" *ngIf="mustNahag">*</span>
+                      <input type="button" *ngIf="OvedLeTikunVis" class="btn" 
+                        value="..." (click)="ClickOved($event,'IdOvdimLeTikum')">
+                      <input class="form-control bg-white" style="width:130px" id="nahag_full_name" readonly
+                        formControlName="nahag_full_name" />
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm">
+                    <span *ngIf="isHusar" style="color:blue;font-weight:bold;">הוסר מסידור עבודה</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card" style="height: 18rem;">
+            <div class="card-header bg-primary text-white">חזרה מתיקון</div>
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="zman_hatchala">ת.העברה</label>
+                      </div>
+                      <div class="col-sm">
+                          <span class="mustReturn" *ngIf="mustReturnDate">*</span>
+                          <kendo-datepicker novalidate [format]="'dd/MM/yyyy'" formControlName="zman_sof">
+                            <!-- <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+                                  {{dtDate | date: 'dd/MM/yyyy'}}
+                              </ng-template> -->
+                          </kendo-datepicker>
+                      </div>              
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                      <label for="nahag_full_name1">נהג</label>
+                    </div>
+                    <div class="col-sm">
+                        
+                      <span class="cont-flex">
+                        <span class="mustReturn" *ngIf="mustReturnNehag">*</span>
+                        <input type="button" *ngIf="OvedMeTikunVis" class="btn" value="..." (click)="ClickOved($event,'IdOvdimMeTikum')">
+                        <input class="form-control bg-white" style="width:130px" id="nahag_full_name1" readonly
+                          formControlName="nahag_full_name1" />
+                      </span>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div style="text-align: center;">
+      <p-footer>
+        <button type="button" pButton icon="pi pi-times" (click)="onNoClick()" label="לא"></button>
+        <span style="width:20px;">&nbsp;</span>
+        <button type="button"
+        [@markedState]="disableForm? 'default':'marked'"
+        pButton icon="pi pi-check" [disabled]="disableForm" (click)="onYesClick()" label="כן"></button>
+      </p-footer>
+    </div>
+
+  </form>
+</div>
+
+<rechev-ng (onCloseComp)="OnCloseRechev($event)"></rechev-ng>
+
+<oved-ng Id='IdOvdimLeTikun'  Sug='OvdimLeTikun' (onCloseComp)="OnCloseOvedLeTikun($event)"></oved-ng>
+<oved-ng Id='IdOvdimMeTikun'  Sug='OvdimLeTikun' (onCloseComp)="OnCloseOvedMeTikun($event)"></oved-ng>
+<ng-container #container></ng-container>

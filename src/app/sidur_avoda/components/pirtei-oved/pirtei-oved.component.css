@@ -1,0 +1,7 @@
+:host{
+    display:grid;
+    direction: rtl;
+    text-align: right;
+    margin-right: 16px;
+    margin-top:0px;
+}

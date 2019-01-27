@@ -1,0 +1,121 @@
+<div dir="rtl" style="text-align: right;height: 530px;">
+  <form novalidate [formGroup]="hefreshForm">
+    <div class="cont-flex">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card" style="height: 6rem;">
+              <div class="card-header bg-primary text-white" style="padding-bottom: 0px;">פרטי עובד לדיווח</div>
+              <div class="card-body" style="padding-bottom: 0px;padding-top: 0px;">
+                <div class="form-group row" style="padding:0px;">
+                  <div class="cont-flex" style="padding:0px;">
+                    <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="false" [withPermission]="onlySpecipicYechida"
+                      [kodYechidaDefault]="hefresh_premia.kod_yechida" (onKodChanged)="OnYechidaMevazaatChanged($event)"
+                      (onCloseComp)="OnCloseYechidaMevazaat($event)" title="יחידה"></yechida-comp-ng>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card" style="height: 10rem;">
+              <div class="card-header bg-primary text-white" style="padding-bottom: 0px;">פרטי מדווח</div>
+              <div class="card-body" style="padding:0px;">
+
+                <pirtei-oved></pirtei-oved>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card" style="height: 12rem;">
+              <div class="card-header bg-primary text-white" style="padding-bottom: 0px;">פרטי הפרשי פרמיות</div>
+              <div class="card-body wrapper-grid" style="padding:0px;">
+
+                <div class="class11">
+                  <span class="must">מקור דיווח</span>
+                  <kendo-combobox name="mekorDivuach" [data]="mekoreiDivuach" [textField]="'text'" [valueField]="'value'"
+                    formControlName="mekorDivuach">
+                  </kendo-combobox>
+                </div>
+                <div class="class21">
+                  <span class="must">סוג דיווח</span>
+                  <kendo-combobox name="sugDivuach" [data]="sugeiDivuach" [textField]="'text'" [valueField]="'value'"
+                    formControlName="sugDivuach">
+                  </kendo-combobox>
+                </div>
+                <div class="class31">
+                  <span class="must">מתאריך:</span>
+                  <kendo-datepicker [format]="'dd/MM/yyyy'" formControlName="zman_hatchala">
+                  </kendo-datepicker>
+                </div>
+                <div class="class41">
+                  <span class="must">עד תאריך:</span>
+                  <kendo-datepicker [format]="'dd/MM/yyyy'" formControlName="zman_sof">
+                  </kendo-datepicker>
+                </div>
+
+                <div class="class12">
+                  <span class="must">ימי דיווח:</span>
+                  <input type="textbox" formControlName="yami_divoach" style="width:90px;" />
+                </div>
+                <div class="class22">
+
+                  <span class="must">דיווח פעיל</span>
+                  <span><input type="checkbox" id="swPail" formControlName="sw_pail"></span>
+                </div>
+                <div class="class32">
+
+                  <span class="must">אחוז פרמיה</span>
+                  <input type="textbox" formControlName="achuz_premia" style="width:90px;" />
+                </div>
+                <div class="class42">
+
+                  <span class="must">סך הכל אחוז</span>
+                  <input type="textbox" disabled="true" formControlName="achuz_premia_all" style="width:90px;" />
+                </div>
+                <div class="class13">
+                  <span class="must">צבע</span>
+                  <kendo-combobox name="zeva" [data]="zvaim" [textField]="'text'" [valueField]="'value'"
+                    formControlName="zeva">
+                  </kendo-combobox>
+                </div>
+                <div class="class23">
+                  <span class="must">סוג משימה</span>
+                  <kendo-combobox name="sugMesima" [data]="lstSugeiMesima" [textField]="'teur_male_sug_mesima'"
+                    [valueField]="'k_sug_mesima'" [(ngModel)]="sugMesima" formControlName="sugMesima">
+                  </kendo-combobox>
+                </div>
+                <div class="class33">
+                  <span>סוג העדרות</span>
+                  <kendo-combobox name="sibatHeadrut" [data]="lstSibotHeadrut" [textField]="'text'" [valueField]="'value'"
+                    [(ngModel)]="sibatHeadrut" formControlName="sibatHeadrut">
+                  </kendo-combobox>
+                </div>
+                <div class="class43">
+                    <span>מספר משימה</span>
+                    <kendo-combobox name="kodMesima" [data]="lstKodeiMesimot" [textField]="'kod_mesima'" [valueField]="'kodMesima'"
+                      [(ngModel)]="kodMesima" formControlName="kodMesima">
+                    </kendo-combobox>
+                  </div>
+                  <div class="class_row_4">
+                      <span>חודש העברה לשכר</span>
+                      <input type="textbox" disabled="true" formControlName="chodeshHuavarLeSachar" style="width:90px;" />
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button (click)="OnReturnHefreshim()" pButton type="button" icon="pi pi-arrow-right" class="ui-button-info">חזרה</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

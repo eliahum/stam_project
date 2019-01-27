@@ -1,0 +1,54 @@
+<span class="header" style="text-align: center">
+
+  <h4 class="title">דוח 4.7 חריגי הפוך לדחס ושקועי קרקע</h4>
+  <div class="cont-flex">
+    <form novalidate [formGroup]="dochForm" (ngSubmit)="OnHazeg()">
+      <div>
+        <span>חודש:</span>
+        <kendo-combobox [clearButton]="false" name="months" [data]="months" [textField]="'text'" [valueField]="'value'" formControlName="month" >
+        </kendo-combobox>
+        <span *ngIf="dochForm.controls.month.invalid" class="must">חודש שדה חובה</span>
+        <span>שנה:</span>
+        <kendo-combobox [clearButton]="false" name="years" [data]="years" [textField]="'text'" [valueField]="'value'" formControlName="year">
+        </kendo-combobox>
+        <span *ngIf="dochForm.controls.year.invalid" class="must">שנה שדה חובה</span>
+      </div>
+      <div>
+        <input (change)="hafuhLeDahasChange($event)" type="radio" name="hafuhLeDahas" id="hafuhLeDahas31" checked="checked" [value]="0">
+        <label  for="hafuhLeDahas31">הפוך לדחס: רכב לא מלא פחות מ 31 פינויים.</label>
+      </div>
+      <div>
+          <input (change)="hafuhLeDahasChange($event)" type="radio" name="hafuhLeDahas" id="hafuhLeDahas27" [value]="1">
+          <label for="hafuhLeDahas27">הפוך לדחס: רכב מלא פחות מ 27 פינויים</label>   
+      </div>
+      <div>
+          <input (change)="hafuhLeDahasChange($event)" type="radio" name="hafuhLeDahas" id="hafuhLeDahas38" [value]="2">
+          <label for="hafuhLeDahas38">שקועי קרקע: רכב מלא פחות מ 38 פינויים</label>   
+      </div>
+      <div>
+          <span>סוג משימה</span>
+          <kendo-combobox [clearButton]="false" name="sugMesima" [data]="sugeyMesima" [textField]="'text'" [valueField]="'value'" formControlName="sugMesima"></kendo-combobox>
+          <span *ngIf="dochForm.controls.sugMesima.invalid" class="must">סוג משימה שדה חובה</span>
+      </div>
+      <div>
+          <span>מלא</span>
+          <kendo-combobox [clearButton]="false" name="male" [data]="kenLoSelect" [textField]="'text'" [valueField]="'value'" formControlName="male"></kendo-combobox>
+          <span *ngIf="dochForm.controls.male.invalid" class="must">מלא שדה חובה</span>
+      </div>
+      <div>
+          <span>פחות מ</span>
+          <input type="text"  OnlyNumber="true" formControlName="pinuim" name="pinuim" id="pinuim">
+          <span>פינויים</span>
+          <span *ngIf="dochForm.controls.pinuim.invalid" class="must">פינויים שדה חובה</span>
+      </div>
+      <div>
+          <span>משקל לפחות</span>
+          <input type="text" OnlyNumber="true" formControlName="mishkal" name="mishkal" id="mishkal">
+          <span *ngIf="dochForm.controls.mishkal.invalid" class="must">משקל שדה חובה</span>
+      </div>
+      <div><button type="submit" style="margin-right: 20px;" class="btn btn-primary">הצג</button></div>
+    </form>
+  </div>
+
+</span>
+<iframe width="100%" height="450" frameborder="0" [src]="url"></iframe>

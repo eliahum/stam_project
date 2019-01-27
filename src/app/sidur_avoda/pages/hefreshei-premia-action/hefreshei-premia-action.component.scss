@@ -1,0 +1,40 @@
+.cont-flex {
+  display: flex;
+  justify-content: right;
+  flex-direction: row;
+}
+.must {  
+  font-weight: bold;
+}
+.must:after {
+  content: "*";
+  color: red;
+}
+.wrapper-grid {
+  display: grid;
+  grid-gap: 5px;
+  direction: rtl;
+  grid-template-columns: auto auto auto auto ;
+  grid-template-rows: auto;
+  width: auto;
+}
+
+
+
+$columns: 4;
+$rows: 3;
+@mixin column_row_style {
+  @for $i from 1 through $columns {
+    @for $j from 1 through $rows {      
+    .class#{$i}#{$j} { grid-column:  $i;grid-row: $j; }
+   
+    //@debug "#{$i} #{$j}"
+
+    }
+  }
+}
+.class_row_4{
+  grid-row:4;
+}
+@include column_row_style
+

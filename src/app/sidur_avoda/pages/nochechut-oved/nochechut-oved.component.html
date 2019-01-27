@@ -1,0 +1,60 @@
+
+  <div class='ui-rtl' dir='rtl' style="margin:0;padding:0;direction: rtl;">
+    <pirtei-oved width="600px"></pirtei-oved>
+
+    <form novalidate #myForm="ngForm">
+      <ng-template #template style="direction: rtl;">
+        <div class="ui-rtl" dir="rtl">
+          <textarea kendoTextArea [(ngModel)]="currentHeara" maxlength="50" [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+      </ng-template>
+      <div kendoDialogContainer style="direction: rtl;text-align: right"></div>
+
+      <kendo-grid nochechutOvedBinding [currentUser]="currentUser" 
+      
+      (cellClick)="cellClickHandler($event)"
+      [pageable]="true" [navigable]="true" [pageSize]="gridState.take"
+        [skip]="gridState.skip" width="150px" [height]="460">
+        <kendo-grid-column field="displayTime" title="תאריך" width="14">
+        </kendo-grid-column>
+        <kendo-grid-column field="kod_yom" title="יום" width="4">
+        </kendo-grid-column>
+        <kendo-grid-column field="sug_yom" title="סוג יום" width="10">
+        </kendo-grid-column>
+        <kendo-grid-column field="hag_teur" title="שם מועד" width="10">
+        </kendo-grid-column>
+        <kendo-grid-column field="teur_sug_headrut" title="העדרות" width="20">
+          <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <kendo-autocomplete [data]="sibot_headruyottmp" (valueChange)="HeadrutChange($event,dataItem)" textField="value"
+            [disabled] ="screenDisabled"
+            valueField="label" [(ngModel)]="dataItem.teur_sug_headrut" [ngModelOptions]="{standalone: true}"
+              [placeholder]="'בחר'" [filterable]="true" (filterChange)="autoCompFilter($event)">
+            </kendo-autocomplete>
+
+            <!-- <kendo-dropdownlist [data]="sibot_headruyot" textField="label" valueField="value" [valuePrimitive]="true"
+            (valueChange)="onSibatHeadrutChange($event,dataItem)" 
+            [formControl]="formGroups.get('items').at(rowIndex).get('id_sug_headrut')">
+          </kendo-dropdownlist> -->
+          </ng-template>
+
+        </kendo-grid-column>
+        <kendo-grid-column  field="heara" title="הערות"
+         width="40"  [style]="{'cursor':screenDisabled?'hand':'pointer'}">
+          <!-- <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex"  width="140">
+            <span style="width:100%;display:block;border:1px solid red">&nbsp;</span>
+            <span (click)="showConfirmation(template,dataItem)" 
+              style="height:100%;width:100%;border:1px solid red;display:block">
+              {{dataItem.heara}}
+            </span> 
+          </ng-template> -->
+        </kendo-grid-column>
+      </kendo-grid>
+      <button (click)="OnReturnNochechut()"  pButton type="button" icon="pi pi-arrow-right"
+      class="ui-button-info">חזרה</button>  
+    </form>
+
+ 
+
+</div>
+  
+

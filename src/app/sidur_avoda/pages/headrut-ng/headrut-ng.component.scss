@@ -1,0 +1,40 @@
+table tr td{
+    padding:0px;
+ }
+ table tr {
+  padding:0px;
+  line-height: 15px;
+}
+.rowclass {
+    line-height: 15px;
+    padding:0px;
+    font-size: 10px;
+}
+.ui-dropdown .ui-dropdown-label {
+    padding-left: 2em;
+  }
+  
+  .ui-dropdown .ui-dropdown-trigger {
+    left: 0;
+  }
+  
+
+:host ::ng-deep .error-toast .ui-toast-message {
+    color: #ffffff;
+    background: #FC466B;
+    background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);
+    background: linear-gradient(to right, #3F5EFB, #FC466B);
+}
+:host ::ng-deep .success-toast .ui-toast-message {
+    color: blue;
+    background: lightgreen;
+    background: -webkit-linear-gradient(to right, lightcyan, lightgreen);
+    background: linear-gradient(to right, lightcyan, lightgreen);
+    display:block;
+}
+.cont-flex{
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+    
+    }

@@ -1,0 +1,21 @@
+<span class="header" style="text-align: center">
+
+  <h4 class="title">דו"ח 4.6 ימים שלא נסגרו</h4>
+  <div class="cont-flex">
+    <form novalidate [formGroup]="dochForm" (ngSubmit)="OnHazeg()">
+      <span>חודש:</span>
+      <kendo-combobox [clearButton]="false" name="months" [data]="months" [textField]="'text'" [valueField]="'value'"
+        formControlName="month">
+      </kendo-combobox>
+      <span *ngIf="dochForm.controls.month.invalid" class="must">חודש שדה חובה</span>
+      <span>שנה:</span>
+      <kendo-combobox [clearButton]="false" name="years" [data]="years" [textField]="'text'" [valueField]="'value'"
+        formControlName="year">
+      </kendo-combobox>
+      <span *ngIf="dochForm.controls.year.invalid" class="must">חודש שדה חובה</span>
+      <button type="submit" style="margin-right: 20px;" class="btn btn-primary">הצג</button>
+    </form>
+  </div>
+
+</span>
+<iframe width="100%" height="450" frameborder="0" [src]="url"></iframe>

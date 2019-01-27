@@ -1,0 +1,25 @@
+<ng-template #contentMishtanaNg let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <span class="text-right">משימה משתנה</span>
+  </div>
+  <div class="modal-body">
+      <p-table #dt [columns]="cols" frozenHeight="100px" [value]="lstMesimot" [lazy]="true" dataKey="id_mesima" selectionMode="single" [(selection)]="selectedMesima"
+          (onRowSelect)="onRowSelect($event)" [loading]="loading" 
+          [totalRecords]="totalRecords" (onLazyLoad)="loadMesimotLazy($event)"
+          [paginator]="true" [rows]="9" >
+
+          <ng-template pTemplate="body" let-mesima>
+              <tr  [ngClass]="'mishtana'"  (click)="onRowSelect(mesima)"   >
+                  <td  style="text-align:right">{{mesima.kod_mesima}}</td>
+                  <td  style="text-align:right">{{mesima.teur_mesima}}</td>
+                  <td  style="text-align:right">{{mesima.teur_sug_mesima}}</td>
+              </tr>
+          </ng-template>
+      </p-table>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('empty')">Close</button>
+  </div>
+
+</ng-template>

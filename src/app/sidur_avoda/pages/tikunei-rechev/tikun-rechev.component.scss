@@ -1,0 +1,22 @@
+.cont-flex {
+  display: flex;
+  justify-content: right;
+  flex-direction: row;
+}
+.ng-valid[required],
+.ng-valid.required {
+  border-bottom: 5px solid mediumseagreen;
+}
+
+.ng-invalid:not(form) {
+  border-bottom: 5px solid red;
+}
+
+.mustReturn {
+  color: red;
+  font-weight: bold;
+}
+.must {
+  color: red;
+  font-weight: bold;
+}

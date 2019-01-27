@@ -1,0 +1,165 @@
+<span class="header" style="text-align: center;">
+  <h4 class="title">
+    <span *ngIf="!isYomSagur && !isChodeshSagur">סידור עבודה</span>
+    <span style="text-align:left;color:blue;font-weight: bold" *ngIf="isChodeshSagur">בחודש זה סידור העבודה סגור
+      לעדכונים</span>
+    <span style="text-align:left;color:blue;font-weight: bold" *ngIf="isYomSagur && !isChodeshSagur">סידור העבודה סגור</span>
+
+  </h4>
+  <div class="cont-flex">
+
+    <button type="button" class="btn btn-warning item-flex" (click)="OnSgiratYom()" *ngIf="!isChodeshSagur && !isYomSagur">סגירת
+      יום</button>
+    <button type="button" (click)="OnCreateMishtana()" *ngIf="!isChodeshSagur && !isYomSagur"
+      class="btn btn-primary item-flex">צור משימה משתנה</button>
+      <button class="item-flex" type="button" (click)="OnOpenHearatSidur()" class="btn btn-info ">שמור
+          הערה</button>
+          <span>תאריך</span>
+          <kendo-datepicker [format]="'dd/MM/yyyy'" (valueChange)="dtChange($event)" [(ngModel)]="taarichSidur">
+            <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+              {{taarichSidur | date: 'dd/MM/yyyy'}}
+            </ng-template>
+          </kendo-datepicker>
+          <button (click)="OnPrevDateClick()">
+            <span class="fa fa-arrow-circle-right fa"></span>
+          </button>
+          <button (click)="OnNextDateClick()">
+            <span class="fa fa-arrow-circle-left fa"></span>
+          </button>
+          <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="true" 
+          [withPermission]="onlySpecipicYechida" [kodYechidaDefault]="KodYechidaMevazaat"
+          title="יחידה מבצעת" (onKodChanged)="OnYechidaMevazaatChanged($event)"
+           (onCloseComp)="OnCloseYechidaMevazaat($event)"></yechida-comp-ng>
+
+        <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="false" [withPermission]="false" title="יחידה מקבלת"
+          (onKodChanged)="OnYechidaMekabeletChanged($event)" (onCloseComp)="OnCloseYechidaMekabelet($event)">
+        </yechida-comp-ng>
+
+          <button type="button"  class="btn btn-info" (click)="OnHazeg()">הצג</button>
+
+    </div>
+  
+</span>
+<p-toast key="success" position="top-center" styleClass="success-toast"></p-toast>
+
+
+<div class="container-fluid">
+  <div class="row" style="float:right;">
+    <span>הערה</span>
+    <span style="padding-right:20px;">{{HearatSidur}}</span>
+  </div>
+</div>
+
+
+<div class="col-md-12" style="direction: rtl;">
+  <p-table #dt [columns]="cols" [value]="lstSidur"  [lazy]="true" dataKey="id_peilut_nidreshet" selectionMode="single"
+    [(selection)]="selectedSidur" (onRowSelect)="onRowSelect($event,null)" [loading]="loading" [totalRecords]="totalRecords"
+    (onLazyLoad)="loadSidurLazy($event)" [paginator]="true" [rows]="pageSize">
+    <ng-template pTemplate="colgroup">
+      <colgroup>
+
+        <col *ngFor="let col of colsWidths" [ngStyle]="{'width' : col.width}">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-colsWidths>
+      <tr>
+        <th *ngFor="let col of colsWidths">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-sidur let-i="rowIndex" let-columns="columns" let-expanded="expanded">
+
+      <tr (click)="onRowSelect(sidur,i)" [class.ui-state-highlight]="i == selectedRow">
+
+        <td [ngClass]="'rowclass'" style="text-align:right">
+          <input type="checkbox" style="width:15px" 
+          [disabled]="screenDisabled"
+          [(ngModel)]="sidur.sw_pail" [checked]="sidur.sw_pail"
+            [ngModelOptions]="{updateOn: 'blur'}" (ngModelChange)="OnChangePail(sidur.sw_pail,sidur,$event)" />
+        </td>
+        <td [ngClass]="'rowclass'" class="fontclass" style="text-align:right">
+          <input type="textbox" [readonly]="isChodeshSagur || isYomSagur || harshaa==16 ||  harshaa==64" 
+          [disabled]="screenDisabled"
+          OnlyNumber="true" style="width:50px"
+            [ngModelOptions]="{updateOn: 'blur'}" (ngModelChange)="OnUpdatePeilutWrap('seder_peula',sidur,$event)"
+            [(ngModel)]="sidur.seder_peula" />
+
+        </td>
+        <td [ngClass]="'mesimaClass'" class="fontclass" style="text-align:right;">{{sidur.kod_mesima}}</td>
+        <td [ngClass]="'rowclass'" class="fontclass" style="text-align:right">{{sidur.teur_peilut}}</td>
+        <td [ngClass]="'rowclass'" class="fontclass">
+          <div class="container">
+            <div class="row">
+              <input *ngIf="SetOvedRechevVisibility(sidur,'button','oved') && !screenDisabled"
+              [disabled]="screenDisabled"
+              type="button" 
+              (click)="ClickOved($event,sidur)">
+              <input type="textbox" readonly="readonly" style="width:170px;"
+               class="fontclass" *ngIf="SetOvedRechevVisibility(sidur,'text','oved')"
+                [ngStyle]="SetColor(sidur,'oved')" value="{{GetOvedName(sidur)}}" />
+
+              <span *ngIf="SetOvedRechevVisibility(sidur,'span','ovedname')" class="fontclass" [ngStyle]="SetColor(sidur,'oved')">
+                {{ GetOvedName(sidur) }}
+              </span>
+            </div>
+          </div>
+        </td>
+        <td [ngClass]="'rowclass'">
+          <div class="container">
+            <div class="row">
+              <input type="button" *ngIf="SetOvedRechevVisibility(sidur,'button','rechev')  && !screenDisabled" (click)="ClickRechev($event,sidur)">
+              <input type="textbox" OnlyNumber="true" style="width:90px" 
+              [disabled]="screenDisabled"
+              (ngModelChange)="OnBeforeUpdatePeilutRechev('rechev',sidur,$event)"
+                (change)="OnBeforeUpdatePeilutRechev('rechev',sidur,$event)"   
+                [readonly]="sidur.sw_pail==false || isChodeshSagur || isYomSagur"
+                *ngIf="SetOvedRechevVisibility(sidur,'text','rechev')" value="{{GetRechev(sidur)}}" class="fontclass"
+                [ngStyle]="SetColor(sidur,'rechev')" />
+              <span class="fontclass" *ngIf="SetOvedRechevVisibility(sidur,'span','rechevpnimi')" [ngStyle]="SetColor(sidur,'oved')">
+                {{ GetRechev(sidur) }}
+              </span>
+            </div>
+          </div>
+        </td>
+        <td [ngClass]="'rowclass'" style="text-align:right">{{sidur.teur_sug_nefech_rehev}}</td>
+
+        <td [ngClass]="'rowclass'" style="text-align:right">
+          <status-mesima [IdStatusMesima]="sidur.id_status_mesima" [IsReadOnly]="isChodeshSagur || isYomSagur || screenDisabled"
+            (onChangeStatus)="OnChangeStatus($event)" [CurrentPeilut]="sidur" [StatusMesimaTeur]="sidur.teur_status_mesima"
+            [SugMahutId]="sidur.id_sug_mahot_mesima">
+          </status-mesima>
+        </td>
+        <td [ngClass]="'rowclass'" style="text-align:right">{{sidur.hearaHanion}}</td>
+        <td [ngClass]="'rowclass'" style="text-align:right">{{sidur.hearaTahana}}</td>
+        <td [ngClass]="'rowclass'" style="text-align:right">
+          <img (click)=onMidaNosafClick(sidur) style="cursor:pointer" src="assets/images/TlvButtonSmallMoreInfo.gif">
+
+        </td>
+        <td [ngClass]="'rowclass'" style="text-align:right">
+          <img (click)=onShinuiKavuaClick(sidur) 
+          *ngIf="!screenDisabled"
+          style="cursor:pointer" src="assets/images/TlvButtonSmallEdit.gif">
+        </td>
+        <td>
+          <a href="#" [pRowToggler]="sidur">
+            <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+          </a>
+        </td>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-sidur let-columns="columns">
+      <tr>
+        <td colspan=13>334</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>
+<mida-nosaf-ng [IsReadOnly]="screenDisabled" (onSaveComp)="OnSaveMidaNosaf($event)"></mida-nosaf-ng>
+<shinui-kavua-ng (onYesComp)="OnShinuiKavua($event)"></shinui-kavua-ng>
+<rechev-ng (onCloseComp)="OnCloseRechev($event)"></rechev-ng>
+<oved-ng (onCloseComp)="OnCloseOved($event)"></oved-ng>
+<mishtana-ng (onCloseComp)="OnCloseMishtana($event)"></mishtana-ng>
+<hearat-sidur (onYesComp)="OnHearatSidurSave($event)"></hearat-sidur>

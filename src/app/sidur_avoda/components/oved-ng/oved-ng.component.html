@@ -1,0 +1,57 @@
+<ng-template #contentOvedPanuiNg let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <span class="text-right">עובדים</span>
+  </div>
+  <div class="modal-body">
+      <p-table #dt [columns]="cols" [value]="lstOvdim" [lazy]="true" dataKey="mispar_oved" selectionMode="single" [(selection)]="selectedOved"
+          (onRowSelect)="onRowSelect($event)" [loading]="loading" [totalRecords]="totalRecords" (onLazyLoad)="loadOvdimLazy($event)"
+          [paginator]="true" [rows]="9">
+          <!--<ng-template pTemplate="caption">
+              <div style="text-align: right" [ngClass]="'oved'">
+                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                      style="width:auto;text-align: right;" dir="rtl">
+              </div>
+          </ng-template>-->
+          <ng-template pTemplate="header" let-columns>
+              <tr>
+                  <th style="width:25px"></th>
+                  <th [ngClass]="'oved'" *ngFor="let col of columns" [pSortableColumn]="col.field">
+                      {{col.header}}                        
+                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+              </tr>
+              <tr>
+                  <th></th>
+                  <th [ngClass]="'oved'" *ngFor="let col of columns" [ngSwitch]="col.field">
+                      <input *ngSwitchCase="'shem_mishpacha'" size="5" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'shem_prati'" size="5" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'td_zehut_user'" pInputText size="5" type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'mispar_oved'" size="5" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                      <input *ngSwitchCase="'mispar_nahag'" size="5" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                  </th>
+              </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-oved>
+              <tr [ngClass]="'oved'" (click)="onRowSelect(oved)"  [ngStyle]="SetStyle(oved)">
+                  <td style="width:3px" [ngStyle]="GetCursorStyle(oved)">
+                      <span placement="left" ngbTooltip="{{GetOvedTooltip(oved)}}">
+                          <img src="assets/images/{{GetOvedTmuna(oved)}}">
+                      </span>
+                  </td>
+                  <td [ngClass]="'oved'" style="text-align:right">{{oved.shem_mishpacha}}</td>
+                  <td style="text-align:right">{{oved.shem_prati}}</td>
+                  <td style="text-align:right">{{oved.td_zehut_user}}</td>
+                  <td style="text-align:right">{{oved.mispar_oved}}</td>
+                  <td style="text-align:right">{{oved.mispar_nahag}}</td>
+              </tr>
+          </ng-template>
+      </p-table>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('empty')">סגור</button>
+  </div>
+
+</ng-template>

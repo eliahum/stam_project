@@ -1,0 +1,35 @@
+<p-dialog [(visible)]="display" modal="modal" [contentStyle]="{'width':'550px','height':'150px'}" [responsive]="true">
+  <p-header style="margin-left:45%">שינוי קבוע</p-header>
+  <div class="container" style="direction: rtl;">
+    <div class="row border">
+      <div class="col-sm border center"></div>
+      <div class="col-sm border center">סדר</div>
+      <div class="col-sm border">עובד/נהג</div>
+      <div class="col-sm border">רכב</div>
+    </div>
+    <div class="row border">
+      <div class="col-sm border">נוכחי</div>
+      <div class="col-sm border font-weight-bold">
+        {{sederNochechi}}
+      </div>
+      <div class="col-sm border font-weight-bold">
+        {{ovedNochechi?ovedNochechi:'שבץ'}}
+      </div>
+      <div class="col-sm border font-weight-bold">
+        {{misparNochechi?misparNochechi:'שבץ'}}
+      </div>
+    </div>
+    <div class="row border">
+      <div class="col-sm border">חדש</div>
+      <div class="col-sm border font-weight-bold">{{currentPeilut?.seder_peula}}</div>
+      <div class="col-sm border font-weight-bold">{{currentPeilut?.full_name?currentPeilut?.full_name:'שבץ'}}</div>
+      <div class="col-sm border font-weight-bold">{{currentPeilut?.mispar_pnimi?currentPeilut?.mispar_pnimi:'שבץ'}}</div>
+    </div>
+  </div>
+  <p-footer>
+    <span class="cont-flex">
+      <button type="button" pButton icon="pi pi-check" (click)="OnDialogYesClick()" label="שמור"></button>
+      <button type="button" pButton icon="pi pi-close" (click)="OnDialogNoClick()" label="בטל"></button>
+    </span>
+  </p-footer>
+</p-dialog>

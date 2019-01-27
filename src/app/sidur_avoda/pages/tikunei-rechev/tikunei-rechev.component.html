@@ -1,0 +1,61 @@
+<div class="cont-flex">
+    <span>תאריך</span>
+    <kendo-datepicker novalidate [format]="'dd/MM/yyyy'" (blur)="onBlurDate()" [(ngModel)]="dtDate">
+        <ng-template kendoCalendarNavigationItemTemplate let-title let-date="date" let-view="activeView">
+            {{dtDate | date: 'dd/MM/yyyy'}}
+        </ng-template>
+    </kendo-datepicker>
+    <span>סטטוס:</span>
+    <kendo-combobox name="status" [data]="statuses" [textField]="'text'" [valueField]="'value'" [(ngModel)]="status">
+    </kendo-combobox>
+    <span class="cont-flex">
+        <span>רכב:</span>
+        <input type="button" class="btn" value="..." (click)="ClickRechev()">
+        <input class="form-control" style="width:60px" OnlyNumber="true"
+        (change)="ChangeMisparPnimi()"  
+        id="mispar_pnimi" [(ngModel)]="mispar_pnimi"/>
+        <input class="form-control bg-white" style="width:160px" [(ngModel)]="mispar_rishui_netzer"  />
+    </span>
+    <span class="cont-flex">
+            <span>נהג:</span>
+        <input type="button" class="btn" value="..." (click)="ClickOved($event)">
+        <input class="form-control bg-white" style="width:130px" id="nahag_full_name" [(ngModel)]="nahag_full_name" readonly  />
+    </span>
+
+    <button type="button" (click)="OnHazeg()" class="btn btn-primary">הצג</button>
+</div>
+
+
+<kendo-grid tikuneiRechevBinding [pageable]="true" [navigable]="true" (edit)="editHandler($event)" (add)="addHandler($event)"
+    [navigable]="true" [pageSize]="gridState.take" [skip]="gridState.skip" [height]="410">
+
+    <ng-template kendoGridToolbarTemplate>
+        <button kendoGridAddCommand [primary]="true" *ngIf="!screenDisabled">הוסף</button>
+    </ng-template>
+    <kendo-grid-column field="mispar_pnimi" title="רכב" width="15">
+    </kendo-grid-column>
+    <kendo-grid-column field="zman_hatchala" title="תאריך העברה" width="15">
+        <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+            <span>{{dataItem.zman_hatchala | date: 'dd/MM/yyyy'}}</span>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="zman_sof" title="תאריך החזרה" width="15">
+        <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+            <span>{{dataItem.zman_sof | date: 'dd/MM/yyyy'}}</span>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="teur_gorem_metaken" title="גורם מטפל" width="15">
+    </kendo-grid-column>
+    <kendo-grid-column field="nahag_full_name" title="נהג" width="15">
+    </kendo-grid-column>
+    <kendo-grid-column field="heara" title="הערות" width="15">
+    </kendo-grid-column>
+    <kendo-grid-command-column title="" width="20">
+        <ng-template kendoGridCellTemplate let-isNew="isNew">
+            <button kendoGridEditCommand [primary]="true" *ngIf="!screenDisabled">עדכן</button>
+        </ng-template>
+    </kendo-grid-command-column>
+</kendo-grid>
+
+<rechev-ng [IsRechavimPnuim]="false" (onCloseComp)="OnCloseRechev($event)"></rechev-ng>
+<oved-ng Id='IdNhagim' Sug='NehagimKlali' (onCloseComp)="OnCloseNehag($event)"></oved-ng>

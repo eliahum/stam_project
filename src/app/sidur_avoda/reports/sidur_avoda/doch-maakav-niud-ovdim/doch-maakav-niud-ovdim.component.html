@@ -1,0 +1,40 @@
+<span class="header" style="text-align: center">
+
+  <h4 class="title">דו"ח 2.6 מעקב ניוד עובדים</h4>
+
+
+  <form novalidate [formGroup]="dochForm" (ngSubmit)="OnHazeg()">
+      <div class="wrapper">
+        <div class="one">
+          <span *ngIf="dochForm.controls.dtFrom.invalid" class="must">שדה מתאריך חובה</span>
+        </div>
+        <div class="two">
+          <span *ngIf="dochForm.controls.dtTo.invalid" class="must">שדה עד תאריך חובה</span>
+        </div>
+        <div class="three">
+        </div>
+        <div class="four">
+          <span>מתאריך:</span>
+          <kendo-datepicker [format]="'dd/MM/yyyy'" formControlName="dtFrom">
+          </kendo-datepicker>
+        </div>
+        <div class="five">
+          <span>עד תאריך:</span>
+          <kendo-datepicker [format]="'dd/MM/yyyy'" formControlName="dtTo">
+          </kendo-datepicker>
+        </div>
+        <div class="six">
+          <yechida-comp-ng [pageSize]="10" novalidate isMessageIfEmpty="false" [withPermission]="onlySpecipicYechida" 
+            [kodYechidaDefault]="KodYechidaMevazaat" (onKodChanged)="OnYechidaMevazaatChanged($event)" (onCloseComp)="OnCloseYechidaMevazaat($event)"
+            title="יחידה">
+          </yechida-comp-ng>
+        </div>
+        <div class="seven">
+            <button type="submit" style="margin-right: 20px;" class="btn btn-primary">הצג</button>
+        </div>
+      </div>
+  </form>
+
+
+</span>
+<iframe width="100%" height="450" frameborder="0" [src]="url"></iframe>

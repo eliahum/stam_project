@@ -1,0 +1,21 @@
+<span class="header" style="text-align: center">
+
+  <h4 class="title">דוח 2.13 יומן פעילויות</h4>
+  <div class="cont-flex">
+
+    <yechida-comp-ng [pageSize]="10" isMessageIfEmpty="true" [withPermission]="onlySpecipicYechida"  [kodYechidaDefault]="KodYechidaMevazaat"
+      (onKodChanged)="OnYechidaMevazaatChanged($event)" (onCloseComp)="OnCloseYechidaMevazaat($event)" title="יחידה"></yechida-comp-ng>
+    <form novalidate [formGroup]="dochForm" (ngSubmit)="OnHazeg()">
+      <span>חודש:</span>
+      <kendo-combobox name="months" [data]="months" [textField]="'text'" [valueField]="'value'" formControlName="month">
+      </kendo-combobox>
+      <span>שנה:</span>
+      <kendo-combobox name="years" [data]="years" [textField]="'text'" [valueField]="'value'" formControlName="year">
+      </kendo-combobox>
+      <button type="submit" style="margin-right: 20px;" class="btn btn-primary">הצג</button>
+
+    </form>
+  </div>
+
+</span>
+<iframe width="100%" height="450" frameborder="0" [src]="url"></iframe>
